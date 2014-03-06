@@ -93,11 +93,6 @@ class Vis(Wallcanvas):
     def send_display(self, client, display):
         client.set_display(display)
 
-    def new_surface(self, string):
-        pass
-        #surface = pygame.image.frombuffer(string, (250,250), 'P')
-
-
 
 
 def get_color(letter):
