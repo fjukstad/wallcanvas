@@ -69,10 +69,6 @@ class Vis(Wallcanvas):
         color = get_color(str(random.randint(0,9)))
         pygame.draw.rect(self.screen, color, square, 0)
 
-    def draw_mazda(self):
-        img = pygame.image.load('mazda.jpg')
-        self.screen.blit(img,(0,0))
-
     def event_loop(self):
         for event in pygame.event.get():
             self.keys = pygame.key.get_pressed()
