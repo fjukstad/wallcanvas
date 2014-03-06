@@ -8,6 +8,8 @@ boxh = 5
 
 spacex = 1
 spacey = 1
+radius = 1
+
 
 class Vis(Wallcanvas):
     def __init__(self,width,height):
@@ -27,12 +29,12 @@ class Vis(Wallcanvas):
         Wallcanvas.__init__(self, self.screen)
 
     def update(self):
-        r = 255
-        g = 255
-        b = 255
+        r = 0
+        g = 0
+        b = 0
 
         self.screen.fill((r,g,b))
-        #self.draw_pi()
+        self.draw_pi()
         #self.draw_box()
         #self.draw_mazda()
     def draw_pi(self):
@@ -42,10 +44,11 @@ class Vis(Wallcanvas):
         for l in range(len(self.pi)):
             letter = self.pi[l]
 
-            square = pygame.Rect(x,y,boxw,boxh)
+            #square = pygame.Rect(x,y,boxw,boxh)
             color = get_color(letter)
-            pygame.draw.rect(self.screen, color, square, 0)
-
+            #pygame.draw.rect(self.screen, color, square, 0)
+            pygame.draw.circle(self.screen, color, (x,y), radius,0)
+            #self.screen.set_at((x,y),color)
             if y >= self.height:
                 print l
                 break
@@ -54,6 +57,7 @@ class Vis(Wallcanvas):
             if x > self.width:
                 y += boxh + spacey
                 x = 0
+
 
     def draw_box(self):
         x = 50
