@@ -7,6 +7,9 @@ boxh = 10
 spacex = 2
 spacey = 2
 
+tiles = [('tile-5-3', 9999),
+         ('tile-6-3', 9999)]
+
 
 class Vis(RPC):
     def __init__(self,width,height, port=0):
@@ -73,11 +76,15 @@ class Vis(RPC):
         return pygame.image.tostring(self.screen, 'RGBA')
 
     def send_screen(self):
-        print self.server_info()
-        visman = self.getDummy(('10.1.255.120', 9999))
-
         screen = self.get_screen()
-        visman.set_display(screen)
+
+        for t in tiles:
+            print t
+            visman = self.getDummy(t)
+            visman.set_display(screen)
+            print "hepp"
+
+        print "sent displays to different tiles"
 
 
     def new_surface(self, string):
@@ -108,8 +115,8 @@ def get_color(letter):
         return pygame.Color(136,12,136,0)
 
 if __name__ == "__main__":
-    h = 700
-    w = 1000
+    h = 768
+    w = 1024
     vis = Vis(w,h)
     vis.run()
 

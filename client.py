@@ -1,29 +1,29 @@
 from rpcHugs import RPC, Dummy
 import pygame
 import sys
+import os
 
 class Client(RPC):
     def __init__(self, port=0):
         RPC.__init__(self, port)
 
-        self.height = 700
-        self.width = 1000
+        self.height = 768
+        self.width = 1024
 
         pygame.init()
         pygame.display.set_mode((self.width, self.height))
         self.screen = pygame.display.get_surface()
         self.screen_rect = self.screen.get_rect()
 
+        pygame.mouse.set_visible(False)
 
         self.surface = None
         self.running = True
 
+        os.environ['SDL_VIDEO_WINDOW_POS'] = "250,250"
+
     def set_display(self, surfaceString):
         self.surface = pygame.image.frombuffer(surfaceString, (self.width,self.height), 'RGBA')
-        #self.surface = pygame.image.fromstring(surfaceString, (self.height,self.width), 'RGBA')
-        #self.screen = pygame.Surface((self.height, self.width), 0, surface)
-        #self.screen_rect = self.screen.get_rect()
-        #pygame.display.update()
         print "updated screen"
         return 0
 
