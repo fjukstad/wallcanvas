@@ -1,5 +1,6 @@
 from rpcHugs import RPC, Dummy
 import pygame
+import threading
 
 port = 9999
 tiles = [
@@ -64,6 +65,8 @@ class Wallcanvas(RPC):
         surface = pygame.Surface((w,h))
         surface.blit(self.screen, (0,0), (x,y,h,w))
         return pygame.image.tostring(surface, 'RGBA')
+    def send_display(self, client, display):
+        client.set_display(display)
 
 
     def wallify(self):
@@ -81,7 +84,7 @@ class Wallcanvas(RPC):
                 visman = self.getDummy(t)
                 visman.set_size(w,h)
                 visman.set_display(display)
-                #t = threading.Thread(target=self.send_display, args=(visman, screen))
+                #t = threading.Thread(target=self.send_display, args=(visman, display))
                 #t.start()
                 x += w
             y += h
