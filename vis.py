@@ -1,15 +1,58 @@
 from rpcHugs import RPC, Dummy
 import pygame
+import random
+import threading
 
-boxw = 10
-boxh = 10
+boxw = 5
+boxh = 5
 
-spacex = 2
-spacey = 2
+spacex = 1
+spacey = 1
 
 tiles = [('tile-5-3', 9999),
          ('tile-6-3', 9999)]
+port = 9999
+wallcanvas = [
+    [
+        ("tile-0-3",port),
+        ("tile-1-3",port),
+        ("tile-2-3",port),
+        ("tile-3-3",port),
+        ("tile-4-3",port),
+        ("tile-5-3",port),
+        ("tile-6-3",port)
+    ],
 
+    [
+        ("tile-0-2",port),
+        ("tile-1-2",port),
+        ("tile-2-2",port),
+        ("tile-3-2",port),
+        ("tile-4-2",port),
+        ("tile-5-2",port),
+        ("tile-6-2",port)
+    ],
+
+    [
+        ( "tile-0-1",port),
+        ( "tile-1-1",port),
+        ( "tile-2-1",port),
+        ( "tile-3-1",port),
+        ( "tile-4-1",port),
+        ( "tile-5-1",port),
+        ( "tile-6-1",port)
+    ],
+
+    [
+        ("tile-0-0", port),
+        ("tile-1-0", port),
+        ("tile-2-0", port),
+        ("tile-3-0", port),
+        ("tile-4-0", port),
+        ("tile-5-0", port),
+        ("tile-6-0", port)
+    ]
+]
 
 class Vis(RPC):
     def __init__(self,width,height, port=0):
@@ -28,6 +71,13 @@ class Vis(RPC):
 
         RPC.__init__(self, port)
 
+
+        # Info about the displaywall
+        self.numtiles = 28
+        self.tilesx = 7
+        self.tilesy = 4
+        self.tileres = (1024,768)
+
     def update(self):
         r = 255
         g = 255
@@ -35,7 +85,8 @@ class Vis(RPC):
 
         self.screen.fill((r,g,b))
         self.draw_pi()
-
+        #self.draw_box()
+        #self.draw_mazda()
     def draw_pi(self):
         x = 0
         y = 0
@@ -45,6 +96,7 @@ class Vis(RPC):
 
             square = pygame.Rect(x,y,boxw,boxh)
             color = get_color(letter)
+            #color = get_color(str(random.randint(0,9)))
             pygame.draw.rect(self.screen, color, square, 0)
 
           #   grey_square = pygame.Rect(x,y,boxw-2,boxh-2)
@@ -58,6 +110,22 @@ class Vis(RPC):
             if x > self.width:
                 y += boxh + spacey
                 x = 0
+
+    def draw_box(self):
+        x = 50
+        y = 50
+        h = 150
+        w = 150
+
+        square = pygame.Rect(x,y,w,h)
+        color = get_color(str(random.randint(0,9)))
+        pygame.draw.rect(self.screen, color, square, 0)
+
+    def draw_mazda(self):
+        img = pygame.image.load('mazda.jpg')
+        self.screen.blit(img,(0,0))
+
+
 
     def event_loop(self):
         for event in pygame.event.get():
@@ -76,20 +144,41 @@ class Vis(RPC):
         return pygame.image.tostring(self.screen, 'RGBA')
 
     def send_screen(self):
-        screen = self.get_screen()
 
-        for t in tiles:
-            print t
-            visman = self.getDummy(t)
-            visman.set_display(screen)
-            print "hepp"
+        # screen = self.get_screen()
+        h = self.height/self.tilesy
+        w = self.width/self.tilesx
+        x = 0
+        y = 0
+
+        for row in wallcanvas:
+            x = 0
+            for t in row:
+                display = self.extract_surface(x,y,w,h)
+                visman = self.getDummy(t)
+                visman.set_size(w,h)
+                visman.set_display(display)
+                #t = threading.Thread(target=self.send_display, args=(visman, screen))
+                #t.start()
+                print "sent to", t, x,y,h,w
+                x += w
+            y += h
 
         print "sent displays to different tiles"
 
+    def send_display(self, client, display):
+        client.set_display(display)
 
     def new_surface(self, string):
         pass
         #surface = pygame.image.frombuffer(string, (250,250), 'P')
+
+    def extract_surface(self, x,y,w,h):
+
+        surface = pygame.Surface((w,h))
+        surface.blit(self.screen, (0,0), (x,y,h,w))
+        return pygame.image.tostring(surface, 'RGBA')
+
 
 
 def get_color(letter):
@@ -115,8 +204,8 @@ def get_color(letter):
         return pygame.Color(136,12,136,0)
 
 if __name__ == "__main__":
-    h = 768
-    w = 1024
+    h = 1024
+    w = 1792
     vis = Vis(w,h)
     vis.run()
 
