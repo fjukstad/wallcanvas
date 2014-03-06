@@ -1,0 +1,3 @@
+[submodule "rpcHugs"]
+	path = rpcHugs
+	url = git@github.com:transmetro/rpcHugs.git
