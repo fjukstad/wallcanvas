@@ -114,10 +114,9 @@ def get_color(letter):
         return pygame.Color(136,12,136,0)
 
 if __name__ == "__main__":
-    h = 1024
-    w = 1792
+    #h = 1024
+    #w = 1792
+    h = 4000
+    w = 7000
     vis = Vis(w,h)
     vis.run()
-
-
-

@@ -57,6 +57,9 @@ class Wallcanvas(RPC):
 
         self.screen = screen
 
+        self.height = screen.get_rect().height
+        self.width = screen.get_rect().width
+        
         RPC.__init__(self,0)
 
 
@@ -88,5 +91,3 @@ class Wallcanvas(RPC):
                 #t.start()
                 x += w
             y += h
-
-
