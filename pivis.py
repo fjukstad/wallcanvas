@@ -154,26 +154,48 @@ class Vis(Wallcanvas):
 
 
 def get_color(letter,a=0):
+    #if letter == "0":
+    #    return pygame.Color(239,0,108,a)
+    #elif letter == "1":
+    #    return pygame.Color(238,40,33,a)
+    #elif letter == "2":
+    #    return pygame.Color(252,85,0,a)
+    #elif letter == "3":
+    #    return pygame.Color(254,184,0,a)
+    #elif letter == "4":
+    #    return pygame.Color(255,250,0,a)
+    #elif letter == "5":
+    #    return pygame.Color(137,208,0,a)
+    #elif letter == "6":
+    #    return pygame.Color(54,185,35,a)
+    #elif letter == "7":
+    #    return pygame.Color(18,166,255,a)
+    #elif letter == "8":
+    #    return pygame.Color(28,35,140,a)
+    #else:
+    #    return pygame.Color(136,12,136,a)
+
+
     if letter == "0":
-        return pygame.Color(239,0,108,a)
+        return pygame.Color(0,97,127,a)
     elif letter == "1":
-        return pygame.Color(238,40,33,a)
+        return pygame.Color(0,115,150,a)
     elif letter == "2":
-        return pygame.Color(252,85,0,a)
+        return pygame.Color(0,156,182,a)
     elif letter == "3":
-        return pygame.Color(254,184,0,a)
+        return pygame.Color(89,190,201,a)
     elif letter == "4":
-        return pygame.Color(255,250,0,a)
+        return pygame.Color(203,51,59,a)
     elif letter == "5":
-        return pygame.Color(137,208,0,a)
+        return pygame.Color(222,124,0,a)
     elif letter == "6":
-        return pygame.Color(54,185,35,a)
+        return pygame.Color(242,169,0,a)
     elif letter == "7":
-        return pygame.Color(18,166,255,a)
+        return pygame.Color(166,187,200,a)
     elif letter == "8":
-        return pygame.Color(28,35,140,a)
+        return pygame.Color(211,212,213,a)
     else:
-        return pygame.Color(136,12,136,a)
+        return pygame.Color(121,175,7,a)
 
 if __name__ == "__main__":
     #h = 314
