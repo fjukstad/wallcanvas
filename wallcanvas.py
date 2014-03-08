@@ -59,14 +59,14 @@ class Wallcanvas(RPC):
 
         self.height = screen.get_rect().height
         self.width = screen.get_rect().width
-        
+
         RPC.__init__(self,0)
 
 
     def extract_surface(self, x,y,w,h):
 
         surface = pygame.Surface((w,h))
-        surface.blit(self.screen, (0,0), (x,y,h,w))
+        surface.blit(self.screen, (0,0), (x,y,w,h))
         return pygame.image.tostring(surface, 'RGBA')
     def send_display(self, client, display):
         client.set_display(display)
