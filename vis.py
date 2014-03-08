@@ -66,7 +66,7 @@ class Vis(Wallcanvas):
 
         for x, y in self.circle_coordinates:
             self.connect_circles(x,y)
-            #pass
+
     def write_result(self, digits):
         color = (242,169,0,0)
 	font = pygame.font.SysFont("Helvetica Light", 30 )
@@ -79,7 +79,7 @@ class Vis(Wallcanvas):
     def connect_circles(self,x,y):
 
         circle_color = self.circle_coordinates[(x,y)]
-        d = 1
+        d = 2
         neighbors = self.get_neighbors(x,y,d)
 
         n_color = 0
