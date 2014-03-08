@@ -8,8 +8,8 @@ from wallcanvas import Wallcanvas
 boxw = 5
 boxh = 5
 
-spacex = 17
-spacey = 17
+spacex = 20
+spacey = 20
 radius = 3
 
 
