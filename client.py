@@ -1,3 +1,7 @@
+# Cluster fork this script on every tile on the display wall.
+# Old copy is stored at /tmp/client.y
+
+
 from rpcHugs import RPC, Dummy
 import pygame
 import sys
