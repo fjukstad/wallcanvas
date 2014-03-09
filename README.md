@@ -11,12 +11,14 @@ digits of pi. Inspired by Martin Krzywinskis posters at
 http://mkweb.bcgsc.ca/pi/piday/. 
 
 ## How it looks like
-On your computer
-![pi visualization](http://i.imgur.com/alToNBY.jpg)
+On a computer
+
+![pi visualization](http://farm8.staticflickr.com/7398/13036398074_461b069f3c.jpg)
 
 On the Displaywall
 
-![pi vis on wall](http://i.imgur.com/qZxeoYN.jpg)
-![pi vis on wall](http://i.imgur.com/vKTLan1.jpg)
+![pi vis on wall](http://farm4.staticflickr.com/3036/13035275155_c0e4b70db9.jpg)
+
+![pi vis on wall](http://farm3.staticflickr.com/2395/13035410303_4542b2a825.jpg)
 
 
