@@ -78,11 +78,14 @@ class Vis(Wallcanvas):
 
     def connect_circles(self,x,y):
 
+        d = 1
+
         circle_color = self.circle_coordinates[(x,y)]
-        d = 2
         neighbors = self.get_neighbors(x,y,d)
 
+        same_colored_neighbor = 0
         n_color = 0
+
         for n in neighbors:
             try:
                 n_color = self.circle_coordinates[n]
@@ -100,6 +103,12 @@ class Vis(Wallcanvas):
                     t = 1
 
                 pygame.draw.line(self.screen, color, n,(x,y),t)
+
+                same_colored_neighbor += 1
+
+        if same_colored_neighbor <= 1:
+            pass
+            #pygame.draw.circle(self.screen, (0,0,0), (x,y), radius, 0)
 
 
     # d = distance from circle. 1 = closest neighbors, 2 = one hop out etc.
@@ -154,26 +163,26 @@ class Vis(Wallcanvas):
 
 
 def get_color(letter,a=0):
-    #if letter == "0":
-    #    return pygame.Color(239,0,108,a)
-    #elif letter == "1":
-    #    return pygame.Color(238,40,33,a)
-    #elif letter == "2":
-    #    return pygame.Color(252,85,0,a)
-    #elif letter == "3":
-    #    return pygame.Color(254,184,0,a)
-    #elif letter == "4":
-    #    return pygame.Color(255,250,0,a)
-    #elif letter == "5":
-    #    return pygame.Color(137,208,0,a)
-    #elif letter == "6":
-    #    return pygame.Color(54,185,35,a)
-    #elif letter == "7":
-    #    return pygame.Color(18,166,255,a)
-    #elif letter == "8":
-    #    return pygame.Color(28,35,140,a)
-    #else:
-    #    return pygame.Color(136,12,136,a)
+    # if letter == "0":
+    #     return pygame.Color(239,0,108,a)
+    # elif letter == "1":
+    #     return pygame.Color(238,40,33,a)
+    # elif letter == "2":
+    #     return pygame.Color(252,85,0,a)
+    # elif letter == "3":
+    #     return pygame.Color(254,184,0,a)
+    # elif letter == "4":
+    #     return pygame.Color(255,250,0,a)
+    # elif letter == "5":
+    #     return pygame.Color(137,208,0,a)
+    # elif letter == "6":
+    #     return pygame.Color(54,185,35,a)
+    # elif letter == "7":
+    #     return pygame.Color(18,166,255,a)
+    # elif letter == "8":
+    #     return pygame.Color(28,35,140,a)
+    # else:
+    #     return pygame.Color(136,12,136,a)
 
 
     if letter == "0":
